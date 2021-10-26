@@ -1,14 +1,26 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.db.models.deletion import CASCADE
 from django.db.models.fields.files import ImageField
 
 
 # Create your models here.
 
+class Profile(models.Model):
+    image = models.ImageField(upload_to="profiles/%Y", default = "default.jpg")
+    bio = models.TextField()
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.username
+        
+
 class Post(models.Model):
     title = models.CharField(max_length=50)
     content = models.TextField()
-    image = models.ImageField(upload_to="profiles/%Y", default = "default.jpg")
+    image = models.ImageField(upload_to="posts/%Y")
     publish_date = models.DateTimeField(auto_now_add = True)
     last_updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=20)
