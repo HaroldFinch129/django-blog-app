@@ -1,9 +1,8 @@
-from django.contrib.auth.models import User
 from django.db import models
 from django.contrib.auth import get_user_model
-from django.db.models.base import Model
-from django.db.models.deletion import CASCADE
-from django.db.models.fields.files import ImageField
+
+User = get_user_model()
+
 
 
 # Create your models here.
@@ -41,11 +40,26 @@ class Post(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
+class Comment(models.Model):
+    timestamp = models.DateTimeField(auto_now=False)
+
 
 class PostView(models.Model):
+
     timestamp = models.TimeField(auto_now_add=True)
 
 
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null =True)
     posts = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    posts = models.ForeignKey(Post, on_delete=models.SET_NULL,null =True, unique= True)
+    
+    def __str__(self):
+        return self.User.username
+
+
+
 
