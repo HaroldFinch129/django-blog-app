@@ -40,8 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # my apps 
+    # my apps
     'blog',
+
+    # 3 party apps
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -129,7 +132,12 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+# for upload media with form
 MEDIA_URL = '/media/'
-
 MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
+
+# for login redirect
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
