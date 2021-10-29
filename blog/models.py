@@ -41,6 +41,7 @@ class Post(models.Model):  # ok
     slug = models.SlugField(
         verbose_name='slug',
         allow_unicode=True,
+        unique=True,
         max_length=255,
         default=title,
         help_text=("The name of the page as it will appear in URLs e.g http://domain.com/blog/[my-slug]/")
