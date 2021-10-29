@@ -5,13 +5,13 @@
 {% block content %}
 
 <div class="container py-5">
-    <form action="" class="d-grid gap-4" method="post" enctype="multipart/form-data">
+    <form action="" class="d-grid gap-4 alert alert-danger" method="post" enctype="multipart/form-data">
 
         {% csrf_token %}
 
         {{ form | crispy }}
 
-        <button type="submit" class="btn btn-success">SEND</button>
+        <button type="submit" class="btn btn-danger">DELETE</button>
     </form>
 </div>
 
